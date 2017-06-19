@@ -8,12 +8,24 @@
 
 import UIKit
 
-class ShorbornoAlphabetVC: UIViewController {
+class ShorbornoAlphabetsVC: UIViewController {
 
+    var btnTagId = 0
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+   @IBAction func btnPressed(btn: UIButton) {
+        btnTagId = btn.tag
+        performSegue(withIdentifier: "toShowShorbornoVC", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let showShorbornoVC = segue.destination as? ShowShorbornoVC {
+            showShorbornoVC.btnTagId = btnTagId
+        }
     }
 
 

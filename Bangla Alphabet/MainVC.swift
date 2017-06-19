@@ -7,19 +7,54 @@
 //
 
 import UIKit
+import AVFoundation
 
-class ViewController: UIViewController {
+class MainVC: UIViewController,AVAudioPlayerDelegate {
+    
+    var player = AVAudioPlayer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func shorborno(_ sender: Any) {
+        performSegue(withIdentifier: "toShorbornoAlphabetsVC", sender: nil)
+        let path = Bundle.main.url(forResource: "shorborno", withExtension: "mp3")
+        do {
+            player = try AVAudioPlayer(contentsOf: path!)
+            player.play()
+        }catch {
+            print(error.localizedDescription)
+        }
     }
+   
+    @IBAction func banjonborno(_ sender: Any) {
+        performSegue(withIdentifier: "toBanjonbornoAlphabetsVC", sender: nil)
+        let path = Bundle.main.url(forResource: "banjonborno", withExtension: "mp3")
+        do {
+            player = try AVAudioPlayer(contentsOf: path!)
+            player.play()
+        }catch {
+            print(error.localizedDescription)
+        }
+    }
+    
 
+    @IBAction func shongkha(_ sender: Any) {
+        performSegue(withIdentifier: "toShongkhaVC", sender: nil)
+    }
+    
+    @IBAction func practiceAlphabets(_ sender: Any) {
+        performSegue(withIdentifier: "toDrawingVC", sender: nil)
+        let path = Bundle.main.url(forResource: "esholikhi", withExtension: "mp3")
+        do {
+            player = try AVAudioPlayer(contentsOf: path!)
+            player.play()
+        }catch {
+            print(error.localizedDescription)
+        }
+    }
 
 }
 
